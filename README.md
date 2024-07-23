@@ -27,16 +27,6 @@ The required dependencies for QR-SIDE is listed as following:
 Additionally, the package `SpatialDecon` is also required. The installation package `SpatialDecon.tar.gz` is included in the R folder.
 
 # Usage
-The inputs of QR-SIDE include a Spot by gene SRT matrix `sp_expr`, 2D spatial coordination `sp_pos`, and differentially expressed gene list `top_DEGs'. If you do not want all genes in `top_DEGs' to be involved, you can specific the value of 'top_marker_num' and turn `fixed_marker_list` to **FALSE** to focus on the top marker genes only.
-
-`Num_topic=7 #Num of topic domains`
-
-`Num_HVG=1000 #num of highly variable genes used in QR_SIDE`
-
-`dim_embed=20 #dimension of embeddings in hierachical factor models`
-
-`top_marker_num=4 #Num of markers of each cell type from "top_DEGs" used in QR_SIDE `
-
-`fixed_marker_list=FALSE #whether QR-SIDE uses the all genes in "top_DEGs" as markers. If FALSE, "top_marker_num" must be provided`
+The inputs of QR-SIDE include a Spot by gene SRT matrix `sp_expr`, 2D spatial coordination `sp_pos`, and differentially expressed gene list `top_DEGs'. `Num_topic` is the number of spatial domains. `Num_HVG` is the number of highly variable genes involved in training. `dim_embed` is the factor dimension in the hierachical factor models. If you only want top n genes of each cell type in `top_DEGs' to be involved, you can specific the value of 'top_marker_num = n' and turn `fixed_marker_list` to **FALSE** to focus on the top n marker genes only.
 
 `out=QR_SIDE(sp_expr, sp_pos, top_DEGs, Num_topic, Num_HVG, dim_embed, top_marker_num, fixed_marker_list)`
