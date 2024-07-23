@@ -6,28 +6,51 @@ QR-SIDE is a package for cell type deconvolution on spatial transcriptomics data
 # Dependency
 The required dependencies for QR-SIDE is listed as following:
 dplyr : 1.1.4 
+
 clue : 0.3-65 
+
 mclust : 6.1 
+
 STdeconvolve : 1.3.1 
+
 scater : 1.26.1 
+
 scran : 1.26.2 
+
 scuttle : 1.8.4 
+
 SingleCellExperiment : 1.20.1 
+
 SummarizedExperiment : 1.28.0 
+
 Biobase : 2.58.0 
+
 GenomicRanges : 1.50.2 
+
 GenomeInfoDb : 1.34.9 
+
 IRanges : 2.32.0 
+
 S4Vectors : 0.36.2 
+
 BiocGenerics : 0.44.0 
+
 MatrixGenerics : 1.10.0 
+
 matrixStats : 1.1.0 
+
 BiocSingular : 1.14.0 
+
 MASS : 7.3-60.0.1 
+
 Rcpp : 1.0.12 
+
 Seurat : 5.0.1 
+
 SeuratObject : 5.0.1 
+
 sp : 2.1-3 
+
 data.table : 1.15.0 
 
 Additionally, the package `SpatialDecon` is also required. The installation package `SpatialDecon.tar.gz` is included in the R folder.
