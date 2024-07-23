@@ -6,19 +6,19 @@ QR-SIDE is a package for cell type deconvolution on spatial transcriptomics data
 # Dependency
 The required dependencies for QR-SIDE is listed as following:
 
-`clue : 0.3-65 
+`clue : 0.3-65`
 
-`mclust : 6.1 
+`mclust : 6.1`
 
-`STdeconvolve : 1.3.1 
+`STdeconvolve : 1.3.1` 
 
-`scater : 1.26.1 
+`scater : 1.26.1` 
 
-`scran** : 1.26.2 
+`scran : 1.26.2` 
 
-`SingleCellExperiment** : 1.20.1 
+`SingleCellExperiment : 1.20.1` 
 
-`BiocSingular : 1.14.0 
+`BiocSingular : 1.14.0` 
 
 `MASS : 7.3-60.0.1`
 
