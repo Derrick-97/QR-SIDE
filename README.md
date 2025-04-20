@@ -76,5 +76,21 @@ BiocManager::install("SingleCellExperiment")  # Bioconductor package
 ```
 
 # Usage
-The inputs of QR-SIDE include a Spot by gene SRT matrix `sp_expr`, 2D spatial coordination `sp_pos`, and differentially expressed gene list `top_DEGs`. `Num_topic` is the number of spatial domains. `Num_HVG` is the number of highly variable genes involved in training. `dim_embed` is the factor dimension in the hierachical factor models. If you only want top n genes of each cell type in `top_DEGs` to be involved, you can specific the value of `top_marker_num = n` and turn `fixed_marker_list` to **FALSE** to focus on the top n marker genes only.
+QR-SIDE​​ takes the following inputs to perform spatial domain deconvolution:
+
+Key Inputs:
+
+sp_expr​​: A ​​spot-by-gene matrix​​ (spatial transcriptomics data in matrix/dataframe format).
+​​sp_pos​​: A ​​2D spatial coordinate matrix​​ (spot locations in X-Y coordinates).
+​​top_DEGs​​: A ​​list of differentially expressed genes​​ (cell-type marker genes).
+​​Num_topic​​ (int): Number of spatial domains to infer.
+​​Num_HVG​​ (int): Number of highly variable genes (HVGs) to include in training.
+​​dim_embed​​ (int): Latent dimension for hierarchical factor modeling.
+​​top_marker_num​​ (int): Only use the ​​top n marker genes​​ per cell type from top_DEGs.
+​​fixed_marker_list​​ (logical):
+
+FALSE → Use top top_marker_num genes per cell type.
+TRUE → Use all genes in top_DEGs.
+
+For a quick start example, see the 'tutorial/MOB.ipynb'
 
