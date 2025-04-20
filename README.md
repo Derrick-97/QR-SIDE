@@ -80,26 +80,20 @@ QR-SIDE​​ takes the following inputs to perform spatial domain deconvolution
 
 Key Inputs:
 
-    1. sp_expr​​: A ​​spot-by-gene matrix​​ (spatial transcriptomics data in matrix/dataframe format).
-    
-​​    2. sp_pos​​: A ​​2D spatial coordinate matrix​​ (spot locations in X-Y coordinates).
-
-​​    3. top_DEGs​​: A ​​list of differentially expressed genes​​ (cell-type marker genes).
-
-    ​​4. Num_topic​​ (int): Number of spatial domains to infer.
-    
-    ​​5. Num_HVG​​ (int): Number of highly variable genes (HVGs) to include in training.
-    
-​​    6. dim_embed​​ (int): Latent dimension for hierarchical factor modeling.
+1. sp_expr​​: A ​​spot-by-gene matrix​​ (spatial transcriptomics data in matrix/dataframe format).
+2. sp_pos​​: A ​​2D spatial coordinate matrix​​ (spot locations in X-Y coordinates).
+3. top_DEGs​​: A ​​list of differentially expressed genes​​ (cell-type marker genes).
+4. Num_topic​​ (int): Number of spatial domains to infer.
+5. Num_HVG​​ (int): Number of highly variable genes (HVGs) to include in training.
+6. dim_embed​​ (int): Latent dimension for hierarchical factor modeling.
 
 Marker Gene Options: 
 
-    1. top_marker_num​​ (int): Only use the ​​top n marker genes​​ per cell type from top_DEGs.
-    
-​​    2. fixed_marker_list​​ (logical):
+1. top_marker_num​​ (int): Only use the ​​top n marker genes​​ per cell type from top_DEGs.
+2. fixed_marker_list​​ (logical):
 
-        FALSE → Use top top_marker_num genes per cell type.
-        TRUE → Use all genes in top_DEGs.
+    FALSE → Use top top_marker_num genes per cell type.
+    TRUE → Use all genes in top_DEGs.
 
-For a quick start example, see the 'tutorial/MOB.ipynb'
+For a quick start example, see the `tutorial/MOB.ipynb`
 
