@@ -1,0 +1,19 @@
+export(
+  run_QRSIDE,
+  QRSIDE_QC
+)
+
+import(SpatialDecon)
+import(SingleCellExperiment)
+import(scater)
+import(scran)
+import(BiocSingular)
+import(MASS)
+import(STdeconvolve)
+import(Rcpp)
+importFrom(Rcpp, evalCpp) 
+import(mclust)
+import(clue)
+import(combinat)
+
+useDynLib(QRSIDE)
