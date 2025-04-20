@@ -42,22 +42,25 @@ RoxygenNote: 7.3.1
    
 2. Install SpatialDecon
     Open ​​R​​ or ​​RStudio​​ and run:
-
-    # Replace '/path/to/' with the actual directory containing SpatialDecon_1.0.tar.gz
+```r
+    #Replace '/path/to/' with the actual directory containing SpatialDecon_1.0.tar.gz
     install.packages(
       pkgs = "/path/to/SpatialDecon_1.0.tar.gz",
       repos = NULL,
       type = "source"
     )
+```
 3. Install QRSIDE
 In the same R session, run:
+```r
 
-# Replace '/path/to/' with the actual directory containing QRSIDE_1.0.0.tar.gz
+#Replace '/path/to/' with the actual directory containing QRSIDE_1.0.0.tar.gz
 install.packages(
   pkgs = "/path/to/QRSIDE_1.0.0.tar.gz",
   repos = NULL,
   type = "source"
 )
+```
 
 # Troubleshooting
 Install required dependencies manually. For example:
