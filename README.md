@@ -42,8 +42,8 @@ RoxygenNote: 7.3.1
 
 # Installation Guide
 1. Download the following files to your local machine:
-    SpatialDecon_1.0.tar.gz
-    QRSIDE_1.0.0.tar.gz
+    `SpatialDecon_1.0.tar.gz`,
+    `QRSIDE_1.0.0.tar.gz`
    
 2. Install SpatialDecon
     Open ​​R​​ or ​​RStudio​​ and run:
