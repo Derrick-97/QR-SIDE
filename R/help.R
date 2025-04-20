@@ -76,9 +76,40 @@ factpc<-function(X, m=2,rotation="none",scores="regression")
   #list(Vars=B[,1:m],loadings=A,scores=PCs,Ri=Ri,common=common)
 } #fa=factpc(X,2)
 
+#' @title 基因表达数据质量控制过滤
+#' @description
+#'   对空间转录组数据的基因表达矩阵进行质量控制过滤，基于基因和位点的总表达量阈值筛选数据，
+#'   并保留与过滤后数据匹配的空间坐标信息。
+#'
+#' @param geneexpr 矩阵或数据框，形状为 "spot by gene"，即行代表空间位点，列代表基因。
+#' @param pos 矩阵或数据框，形状为 "spot by 2"，即每一行对应一个空间位点的二维坐标（例如 x 和 y）。
+#' @param threshold 数值，过滤阈值。行（位点）或列（基因）的总表达量必须大于此值才会被保留。
+#'
+#' @return 返回一个包含两个元素的列表：
+#'   \itemize{
+#'     \item \code{[[1]]} 矩阵，过滤后的基因表达矩阵（行和列均满足总表达量 > threshold）。
+#'     \item \code{[[2]]} 数据框，与过滤后表达矩阵行名匹配的空间坐标信息，形状为 "spot by 2"。
+#'   }
+#' @export
+
+QRSIDE_QC <- function(geneexpr,pos,threshold){
+    filtered_rows <- geneexpr[rowSums(geneexpr) > threshold, ]
+    
+    filtered_matrix <- filtered_rows[, colSums(geneexpr) > threshold]
+    
+    m_tmp=merge(filtered_matrix,pos, by = 0, all = FALSE)
+    rownames(m_tmp)=m_tmp$Row.names
+    desired_order <- rownames(filtered_matrix)
+
+    m_tmp=m_tmp[match(desired_order, rownames(m_tmp)), ]
+    
+    output=list()
+    output[[1]]=filtered_matrix
+    output[[2]]=m_tmp[,(ncol(m_tmp)-ncol(pos)+1):ncol(m_tmp)]
+return (output)
+}
 
 Createsce <- function(X, n){
-  library(SingleCellExperiment)
   # -------------------------------------------------
   # make BayesSpace metadata used in BayesSpace
   counts <- t(X)
@@ -137,7 +168,6 @@ spatialPreprocess <- function(sce, platform=c("Visium", "ST"),
 
 ## calculate RMSE
 calRMSE = function(groundtruth, deconProp, permutation = TRUE){
-  library(combinat)
   K = dim(groundtruth)[2]
   n = length(permn(K))
   if (permutation == TRUE){

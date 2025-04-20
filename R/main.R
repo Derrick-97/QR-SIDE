@@ -1,17 +1,5 @@
 
 set.seed(999)
-library(Rcpp)
-library(MASS)
-library(BiocSingular)
-library(scran)
-library(scater)
-library(SingleCellExperiment)
-library(STdeconvolve)
-library(mclust)
-library(SpatialDecon)
-library(clue)
-source("/share/home/chenjy/SDcon/help.R")
-sourceCpp("/share/home/chenjy/SDcon/vbem_alpha.cpp")
 
 calmu_int = function(Z_int, label, beta,Num_celltype,num){
   Z_int_ts = apply(Z_int[label==1,], 2, mean)
@@ -53,16 +41,25 @@ A_reordered <- A[, reorder]
 return (A_reordered)
 }
 
-# SDecon <- function(X, X2,logX, markerList, pos,rho,delta,Num_topic,Num_celltype) {
- 
-QR_SIDE <- function(sp_counts, pos, markerframe, Num_topic, Num_HVG,dim_embed,max_marker,markerflag) {
+#' @title 执行 QR-SIDE 解卷积
+#' @description 主函数，用于空间转录组数据的细胞类型解卷积分析
+#' @param sp_counts 空间表达矩阵
+#' @param pos 位置坐标
+#' @param markerframe 标记基因框架
+#' @param Num_topic 主题数
+#' @param Num_HVG 高变基因数
+#' @param dim_embed 嵌入维度
+#' @param max_marker 最大标记基因数
+#' @param markerflag 标记基因标志
+#' @return 解卷积结果
+#' @export
+run_QRSIDE <- function(sp_counts, pos, markerframe, Num_topic, Num_HVG,dim_embed,max_marker,markerflag) {
 
 time_spot0 <- Sys.time()
    
 sce = Createsce(sp_counts,nrow(sp_counts))
 sce = spatialPreprocess(sce, n.HVGs=Num_HVG)
 PCA = reducedDim(sce, "PCA")
-library(scater)
 logX = t(logcounts(sce)[rowData(sce)[["is.HVG"]],])
 sum(apply(logX, 1, sum))
 X2 =  as.matrix(t(counts(sce)[rowData(sce)[["is.HVG"]],]))
@@ -258,7 +255,7 @@ print('finish match')
 mu_int = calmu_int(Initial$z_mu, gmm$classification, beta,Num_celltype,q)
 
 Adj = SC.MEB::getneighborhood_fast(as.matrix(pos), cutoff = 1.3)
-summary(colSums(Adj))
+# summary(colSums(Adj))
 y_int = apply(Initial$pi, 1, which.max)
 epsilon2 = matrix(1, n, q)
 
@@ -310,6 +307,3 @@ output_$pos=pos
 }
   
 
-
-#RMSE: 1:STDecon 2: out2  3: CARDfree 4:marker 5: CARD_obj 6: RCTD 7: Giotto
-# results 1: out2 2: STDecon 3: CARDfree 4: CARD_obj 5: RCTD 6: Giotto
